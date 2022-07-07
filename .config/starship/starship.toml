@@ -1,0 +1,42 @@
+add_newline = false
+command_timeout = 1000
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
+
+[hostname]
+ssh_only = false
+format = "[$hostname](bold white)[: ](bold  white)"
+style = "bold blue"
+
+[username]
+disabled = true
+
+[directory]
+truncation_length = 5
+format = "[$path]($style) "
+
+[docker_context]
+format = "via [🐋 $context](blue bold)"
+
+[git_branch]
+style = "bold yellow"
+format = " [$symbol $branch]($style) "
+symbol = ""
+
+[cmd_duration]
+disabled = true
+
+[nodejs]
+format = "via [🤖 $version](bold green) "
+
+[line_break]
+disabled = false
+
+[sudo]
+style = "bold green"
+disabled = false
+
+[aws]
+disabled = true
