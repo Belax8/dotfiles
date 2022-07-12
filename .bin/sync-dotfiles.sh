@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/sh
 
 # Sync dotfiles repo and ensure that dotfiles are tangled correctly afterward
 
@@ -23,14 +23,14 @@ echo
 git pull origin main
 echo
 
-if [[ $needs_pop -eq 1 ]]; then
+if [ $needs_pop -eq 1 ]; then
     echo -e "${BLUE}Popping stashed changes...${NC}"
     echo
     git stash pop
 fi
 
 unmerged_files=$(git diff --name-only --diff-filter=U)
-if [[ ! -z $unmerged_files ]]; then
+if [ ! -z $unmerged_files ]; then
    echo -e "${RED}The following files have merge conflicts after popping the stash:${NC}"
    echo
    printf %"s\n" $unmerged_files  # Ensure newlines are printed
