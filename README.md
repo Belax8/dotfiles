@@ -8,18 +8,6 @@ git clone git@github.com:Belax8/dotfiles.git ~/.dotfiles
 ```
 
 
-## Install Stow
-MacOS
-```
-brew install stow
-```
-
-Ubuntu
-```
-sudo apt-get install stow
-```
-
-
 ## Setup
 Run the full setup
 ```
@@ -31,18 +19,16 @@ Pull git and create/update links
 ./sync-dotfiles.sh
 ```
 
-Remove links
-```
-stow -D .
-```
+
+## Auto Setups
+The following will be installed with the setup script:
+ * Node
+ * Neovim
+ * Starship
+ * Stow
+ * Tmux
 
 
 ## Manual Setups
-
-### Tailscale
-```
-curl -fsSL https://tailscale.com/install.sh | sh
-sudo apt-get install tailscale
-sudo tailscale up
-```
-
+The following will need to be run manually if you want them installed:
+ * Tailscale

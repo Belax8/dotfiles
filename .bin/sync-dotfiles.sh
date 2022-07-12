@@ -35,9 +35,8 @@ if [[ ! -z $unmerged_files ]]; then
    echo
    printf %"s\n" $unmerged_files  # Ensure newlines are printed
 else
-   # TODO: should I remove all the links first to keep everything clean?
-   # stow -D .
-
+   # Unlink everything
+   stow -D .
    # Run stow to ensure all new dotfiles are linked
    stow .
 fi

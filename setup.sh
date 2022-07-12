@@ -1,11 +1,13 @@
 
+# install stow
+./scripts/stow.sh
+
 # Sync Dotfiles
-./sync-dotfiles.sh
+./.bin/sync-dotfiles.sh
 
 # Install everything that we need
-FILES="./installables/*"
-for f in $FILES
+FILES='node.sh,nvim.sh,starship.sh,tmux.sh'
+for f in $(echo $FILES | sed "s/,/ /g")
 do
-  $f
+  "./scripts/$f"
 done
-
