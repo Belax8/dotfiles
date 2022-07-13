@@ -23,10 +23,12 @@ Pull git and create/update links
 ## Auto Setups
 The following will be installed with the setup script:
  * Node
+ * Nodeenv
  * Neovim
  * Starship
  * Stow
  * Tmux
+ * Zsh
 
 
 ## Manual Setups
