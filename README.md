@@ -32,5 +32,8 @@ The following will be installed with the setup script:
 
 
 ## Manual Setups
-The following will need to be run manually if you want them installed:
+The following will need to be run manually, if you want them installed:
+ * AWS
+ * Docker
+ * Mosh
  * Tailscale

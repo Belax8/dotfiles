@@ -1,4 +1,7 @@
 
+alias vim='nvim'
+export EDITOR=nvim
+
 # Starship
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
