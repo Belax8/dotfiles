@@ -37,4 +37,4 @@ alias node18='source ~/env/node18/bin/activate; cd ~/code'
 alias dn='deactivate_node; cd ~'
 
 # If another config file exists, load it
-[ -f "$HOME/.config/belax8/something.sh" ] && source "$HOME/.config/belax8/something.sh"
+[ -f "$HOME/.zshrc_local" ] && source "$HOME/.zshrc_local"
