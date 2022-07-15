@@ -1,9 +1,21 @@
-# .dotfiles
+```
+ /\\\\\\\\\    /\\\\\\\\\\\\\  /\\\               /\\\\\\\\    /\\\         /\\\     /\\\\\\\\\
+/\\\///////\\\ \/\\\/////////  \/\\\             /\\\\\\\\\\\  \///\\\     /\\\/    /\\\///////\\\
+\/\\\     \/\\\ \/\\\           \/\\\            /\\\///////\\\   \///\\\ /\\\/     \/\\\     \/\\\
+ \/\\\\\\\\\\\/  \/\\\\\\\\\     \/\\\           \/\\\     \/\\\     \////\\\/       \//\\\\\\\\\\/
+  \/\\\//////\\\  \/\\\/////      \/\\\           \/\\\\\\\\\\\\\       /\\\/\\        \/\\//////\\\
+   \/\\\    \//\\\ \/\\\           \/\\\           \/\\\///////\\\     /\\\////\\\     \/\\\    \//\\\
+    \/\\\    \//\\\ \/\\\           \/\\\           \/\\\     \/\\\   /\\\/   \///\\\   \/\\\    \//\\\
+     \/\\\\\\\\\\\/  \/\\\\\\\\\\\\\ \/\\\\\\\\\\\\\ \/\\\     \/\\\ /\\\/       \///\\\ \///\\\\\\\\\/
+      \///////////    \/////////////  \/////////////  \///      \/// \///           \///    \/////////
+```
 
 
 ## Install
 ```
 git clone https://github.com/Belax8/dotfiles.git ~/.dotfiles
+```
+```
 git clone git@github.com:Belax8/dotfiles.git ~/.dotfiles
 ```
 
@@ -22,9 +34,9 @@ Pull git and create/update links
 
 ## Auto Setups
 The following will be installed with the setup script:
+ * Neovim
  * Node
  * Nodeenv
- * Neovim
  * Starship
  * Stow
  * Tmux
@@ -37,3 +49,12 @@ The following will need to be run manually, if you want them installed:
  * Docker
  * Mosh
  * Tailscale
+
+
+## Additional Notes
+
+### Nvim
+Run the following command to update vim-plug and all the plugins:
+```
+nvim +PlugUpgrade +PlugUpdate +PlugClean! +qall
+```

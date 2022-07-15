@@ -1,4 +1,5 @@
 
+# Neovim
 alias vim='nvim'
 export EDITOR=nvim
 
@@ -20,7 +21,6 @@ alias gr='git reset --hard'
 alias gco='git checkout'
 # make sure to checkout your default branch first
 alias gcb="git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d"
-
 
 # Tmux
 alias tms='tmux new-session -As'

@@ -1,12 +1,12 @@
 #!/usr/bin/sh
 
 # install dependencies
-PACKAGES='ninja-build,gettext,libtool,libtool-bin,autoconf,automake,cmake,g++,pkg-config,unzip,curl,doxygen'
+PACKAGES='ninja-build,gettext,libtool,libtool-bin,autoconf,automake,cmake,g++,pkg-config,unzip,curl,doxygen,ripgrep'
 for pack in $(echo $PACKAGES | sed "s/,/ /g")
 do
   if ! apt list --installed | grep -i $pack > /dev/null
   then
-    sudo apt-get install $pack
+    sudo apt-get install $pack --yes
   else
     echo "$pack already installed"
   fi

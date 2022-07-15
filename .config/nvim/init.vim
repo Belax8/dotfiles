@@ -59,19 +59,25 @@ Plug 'ThePrimeagen/harpoon'
 
 " Telescope
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 
 " Git Diff in gutter
 Plug 'airblade/vim-gitgutter'
+
+" Check Git blame on a line
+Plug 'rhysd/git-messenger.vim'
 
 " Github Copilot
 Plug 'github/copilot.vim'
 
 " Possible plugins to use
 " Plug 'fannheyward/telescope-coc.nvim'  " Telescope & COC colab
+" Plug 'rcarriga/nvim-notify'  " Notification system in neovim
+" Plug 'mhinz/vim-startify'  " Customize the nvim start screen
 " Plug 'rhysd/vim-grammarous'  " Grammer Help
 " Plug 'sirver/ultisnips'  " Snippets
 " Plug 'honza/vim-snippets'  " Snippets
+" Plug 'L3MON4D3/LuaSnip'  " Snippets
 " Plug 'neoclide/coc-git'  " git
 
 call plug#end()
@@ -139,12 +145,16 @@ set t_8b=^[[48;2;%lu;%lu;%lum
 set t_8f=^[[38;2;%lu;%lu;%lum
 augroup ONETHEME
   " call one#highlight('group', 'foreground', 'background', 'attribute')
-  autocmd BufReadPost * call one#highlight('PMenu', 'cccccc', '0091ce', 'none')
-  autocmd BufReadPost * call one#highlight('PMenuSel', 'cccccc', '0091ce', 'none')
-  autocmd BufReadPost * call one#highlight('PMenuSbar', 'cccccc', '0091ce', 'none')
-  autocmd BufReadPost * call one#highlight('PMenuThumb', 'cccccc', '0091ce', 'none')
-  autocmd BufReadPost * call one#highlight('ColorColumn', 'cccccc', '262626', 'none')
+  autocmd BufReadPost * call one#highlight('PMenu', 'ffffff', '005174', 'none')
+  autocmd BufReadPost * call one#highlight('PMenuSel', 'ffffff', '005174', 'none')
+  autocmd BufReadPost * call one#highlight('PMenuSbar', 'ffffff', '005174', 'none')
+  autocmd BufReadPost * call one#highlight('PMenuThumb', 'ffffff', '005174', 'none')
+  autocmd BufReadPost * call one#highlight('ColorColumn', 'ffffff', '262626', 'none')
 augroup END
+
+
+" Git Messenger
+nnoremap <leader>gm <cmd>GitMessenger<cr>
 
 
 " Prettier
