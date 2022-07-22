@@ -10,6 +10,7 @@ eval "$(starship init zsh)"
 # Misc
 alias la='ls -lah'
 alias chtsh="$HOME/.dotfiles/cht.sh"
+alias dotfiles='cd ~/.dotfiles'
 
 # Git
 alias gs='git status'

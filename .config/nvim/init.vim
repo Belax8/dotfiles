@@ -34,6 +34,7 @@ set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
 set linebreak
 set noswapfile
+set mouse=a
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -135,6 +136,7 @@ nnoremap <C-o> :NERDTreeToggle %<CR>
 
 " Telescope
 nnoremap <leader>ff <cmd>Telescope find_files hidden=true<cr>
+nnoremap <leader>df <cmd>Telescope find_files hidden=true cwd=~/.dotfiles<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep hidden=true<cr>
 nnoremap <leader>fb <cmd>Telescope buffers hidden=true<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags hidden=true<cr>

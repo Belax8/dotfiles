@@ -1,16 +1,14 @@
 add_newline = false
 command_timeout = 1000
 
+[aws]
+disabled = true
+
 [character]
 success_symbol = "[>](bold green)"
 error_symbol = "[>](bold red)"
 
-[hostname]
-ssh_only = false
-format = "[$hostname](bold white)[: ](bold  white)"
-style = "bold blue"
-
-[username]
+[cmd_duration]
 disabled = true
 
 [directory]
@@ -23,20 +21,19 @@ format = "via [🐋 $context](blue bold)"
 [git_branch]
 style = "bold yellow"
 format = " [$symbol $branch]($style) "
-symbol = ""
+symbol = "🌱"
 
-[cmd_duration]
-disabled = true
+[hostname]
+ssh_only = false
+format = "[$hostname](bold white)[: ](bold  white)"
+style = "bold blue"
 
 [nodejs]
 format = "via [🤖 $version](bold green) "
-
-[line_break]
-disabled = false
 
 [sudo]
 style = "bold green"
 disabled = false
 
-[aws]
+[username]
 disabled = true
