@@ -3,11 +3,20 @@ syntax on
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 
-" Plug 'scrooloose/nerdtree'
+" Completion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+" Plug 'hrsh7th/cmp-cmdline'
+
 Plug 'preservim/nerdtree'
-Plug 'w0rp/ale'
 
 " One Theme
 Plug 'rakr/vim-one'
@@ -33,18 +42,15 @@ Plug 'rcarriga/nvim-notify'
 Plug 'rhysd/git-messenger.vim'
 
 " Github Copilot
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 
 " Possible plugins to use
-" Plug 'fannheyward/telescope-coc.nvim'  " Telescope & COC colab
 " Plug 'rcarriga/nvim-notify'  " Notification system in neovim
 " Plug 'mhinz/vim-startify'  " Customize the nvim start screen
 " Plug 'rhysd/vim-grammarous'  " Grammer Help
 " Plug 'sirver/ultisnips'  " Snippets
 " Plug 'honza/vim-snippets'  " Snippets
-" Plug 'L3MON4D3/LuaSnip'  " Snippets
 " Plug 'klen/nvim-test'  " Run tests via nvim
-" Plug 'neoclide/coc-git'  " git
 
 call plug#end()
 
