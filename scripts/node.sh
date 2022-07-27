@@ -3,7 +3,7 @@
 # node
 if ! command -v node > /dev/null
 then
-  sudo apt install node --yes
+  sudo apt install nodejs --yes
 else
   echo 'node already installed'
 fi
