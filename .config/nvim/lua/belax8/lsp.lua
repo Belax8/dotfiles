@@ -76,6 +76,7 @@ cmp.setup.filetype('gitcommit', {
 -- Setup lspconfig.
 servers = {
   'angularls',
+  'dockerls',
   'eslint',
   'grammarly',
   'html',
