@@ -18,7 +18,6 @@ require('nvim-lsp-installer').setup({
 })
 
 local lsp_on_attach = function() 
-    vim.notify('attached to server')
     nnoremap('K', vim.lsp.buf.hover, { buffer = 0 })
     nnoremap('gd', vim.lsp.buf.definition, { buffer = 0 })
     nnoremap('gt', vim.lsp.buf.type_definition, { buffer = 0 })
@@ -53,7 +52,7 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -88,6 +87,7 @@ servers = {
 for key, value in ipairs(servers) do
   lspconfig[value].setup({
     on_attach = lsp_on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
   })
 end

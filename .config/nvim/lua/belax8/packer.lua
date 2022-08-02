@@ -49,11 +49,9 @@ return require('packer').startup(function(use)
   use 'github/copilot.vim'
 
   -- Possible plugins to use
-  -- use 'rcarriga/nvim-notify'  -- Notification system in neovim
   -- use 'mhinz/vim-startify'  -- Customize the nvim start screen
   -- use 'rhysd/vim-grammarous'  -- Grammer Help
-  -- use 'sirver/ultisnips'  -- Snippets
-  -- use 'honza/vim-snippets'  -- Snippets
   -- use 'klen/nvim-test'  -- Run tests via nvim
+  -- use 'lspcontainers/lspcontainers.nvim'  -- attach lsp to docker container
 
 end)
