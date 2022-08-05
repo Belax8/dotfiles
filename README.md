@@ -49,12 +49,13 @@ The following will need to be run manually, if you want them installed:
  * Docker
  * Mosh
  * Tailscale
+ * Virtualenv
 
 
 ## Additional Notes
 
 ### Nvim
-Run the following command to update vim-plug and all the plugins:
+Run the following command to update packer and all the plugins:
 ```
-nvim +PlugUpgrade +PlugUpdate +PlugClean! +qall
+nvim +PackerSync
 ```

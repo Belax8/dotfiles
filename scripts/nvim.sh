@@ -25,15 +25,10 @@ else
 fi
 
 
-if ! [ -f $HOME/.local/share/nvim/site/autoload/plug.vim ]
+if ! [ -d $HOME/.local/share/nvim/site/pack/packer ]
 then
   # install plugin manager
-  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
 else
-  echo 'plug.vim already installed'
+  echo 'packer.nvim already installed'
 fi
-
-
-# install plugins
-nvim +PlugInstall +qall
