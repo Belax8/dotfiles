@@ -4,10 +4,9 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local remap = require('belax8.remap')
 local nnoremap = remap.nnoremap
-local vnoremap = remap.vnoremap
 local inoremap = remap.inoremap
-local xnoremap = remap.xnoremap
-local nmap = remap.nmap
+
+local silent = { silent = true }
 
 
 -- Notify
@@ -20,7 +19,6 @@ inoremap('jj', '<esc>')
 
 
 -- Harpoon
-local silent = { silent = true }
 require('harpoon').setup({ nav_first_in_list = true })
 require('telescope').load_extension('harpoon')
 nnoremap('<leader>a', function() require('harpoon.mark').add_file() end, silent)
