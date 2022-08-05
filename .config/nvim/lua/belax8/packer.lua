@@ -46,7 +46,7 @@ return require('packer').startup(function(use)
   use 'rhysd/git-messenger.vim'
 
   -- Github Copilot
-  use 'github/copilot.vim'
+  -- use 'github/copilot.vim'
 
   -- Possible plugins to use
   -- use 'mhinz/vim-startify'  -- Customize the nvim start screen

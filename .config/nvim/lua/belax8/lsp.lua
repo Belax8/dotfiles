@@ -75,12 +75,20 @@ cmp.setup.filetype('gitcommit', {
 -- Setup lspconfig.
 servers = {
   'angularls',
+  'bashls',
+  'csharp_ls',
+  'cssls',
   'dockerls',
   'eslint',
   'grammarly',
+  'graphql',
   'html',
   'jsonls',
+  'omnisharp',
+  'prismals',
   'pyright',
+  'sumneko_lua',
+  'tailwindcss',
   'tsserver',
 }
 
@@ -88,6 +96,6 @@ for key, value in ipairs(servers) do
   lspconfig[value].setup({
     on_attach = lsp_on_attach,
     capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
   })
 end

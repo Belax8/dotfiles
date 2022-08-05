@@ -49,6 +49,7 @@ The following will need to be run manually, if you want them installed:
  * Docker
  * Mosh
  * Tailscale
+ * Virtualenv
 
 
 ## Additional Notes

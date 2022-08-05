@@ -32,7 +32,3 @@ then
 else
   echo 'packer.nvim already installed'
 fi
-
-
-# install plugins
-nvim +PackerSync +qall
