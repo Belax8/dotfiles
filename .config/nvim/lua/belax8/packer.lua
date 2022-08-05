@@ -45,8 +45,13 @@ return require('packer').startup(function(use)
   -- Check Git blame on a line
   use 'rhysd/git-messenger.vim'
 
-  -- Github Copilot
-  -- use 'github/copilot.vim'
+  -- Easy Comments
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
 
   -- Possible plugins to use
   -- use 'mhinz/vim-startify'  -- Customize the nvim start screen
