@@ -84,7 +84,7 @@ local servers = {
   'graphql',
   'html',
   'jsonls',
-  'omnisharp',
+  -- 'omnisharp',
   'prismals',
   'pyright',
   -- 'sumneko_lua',
@@ -100,6 +100,17 @@ for _, value in ipairs(servers) do
     root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
   })
 end
+
+-- check errors in ~/.cache/nvim/lsp.log
+-- Need to install 6.0 SDK
+lspconfig.omnisharp.setup({
+    on_attach = lsp_on_attach,
+    capabilities = capabilities,
+    -- root_dir = lspconfig.util.root_pattern("*.sln"),
+    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
+    cmd = { "dotnet", '$HOME/.local/share/nvim/lsp_servers/omnisharp/omnisharp/OmniSharp.dll' },
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#omnisharp
+})
 
 lspconfig.sumneko_lua.setup({
   on_attach = lsp_on_attach,
