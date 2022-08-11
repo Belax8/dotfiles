@@ -10,7 +10,7 @@ local silent = { silent = true }
 
 
 -- Notify
-vim.notify = require('belax8.notify').notify
+-- vim.notify = require('belax8.notify').notify
 nnoremap('<leader>nh', function() require('telescope').extensions.notify.notify() end, silent)
 
 
