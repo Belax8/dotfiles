@@ -62,3 +62,22 @@ Run the following command to update packer and all the plugins:
 ```
 nvim +PackerSync
 ```
+
+### Tmux
+After it's installed, open a tmux session and install the packages (`ctrl+b I`)
+
+### Virtualenv
+```
+$HOME/.local/bin/virtualenv --python=python3.8 $HOME/env/<project-name>
+```
+
+### AWS EC2
+This script will update the EC2 instance's IP address in Route 53
+```
+cp .update_ip_address.sh $HOME
+```
+Open `.update_ip_address.sh` and configure `INSTANCE_ID`, `SUBDOMAIN` & `HOSTED_ZONE`, then add the
+following line to your crontab.
+```
+@reboot $HOME/.update_ip_address.sh
+```
