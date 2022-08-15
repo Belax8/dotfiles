@@ -33,7 +33,10 @@ return require('packer').startup(function(use)
   use 'ThePrimeagen/harpoon'
 
   -- Telescope
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x' }
 
   -- Git Diff in gutter
