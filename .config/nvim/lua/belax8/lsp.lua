@@ -4,7 +4,9 @@ if not status_ok then
   return
 end
 
+local cmp = require('cmp')
 local nnoremap = require('belax8.remap').nnoremap
+
 
 require('nvim-lsp-installer').setup({
     automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
@@ -17,24 +19,8 @@ require('nvim-lsp-installer').setup({
     }
 })
 
-local lsp_on_attach = function()
-    nnoremap('K', vim.lsp.buf.hover, { buffer = 0 })
-    nnoremap('gd', vim.lsp.buf.definition, { buffer = 0 })
-    nnoremap('gt', vim.lsp.buf.type_definition, { buffer = 0 })
-    nnoremap('gi', vim.lsp.buf.implementation, { buffer = 0 })
-    nnoremap('<leader>dj', vim.diagnostic.goto_next, { buffer = 0 })
-    nnoremap('<leader>dk', vim.diagnostic.goto_prev, { buffer = 0 })
-    nnoremap('<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
-    nnoremap('<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
-    nnoremap('<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
-end
-
-
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Setup nvim-cmp.
-local cmp = require('cmp')
 
 cmp.setup({
   snippet = {
@@ -74,45 +60,54 @@ cmp.setup.filetype('gitcommit', {
 
 -- Setup lspconfig.
 local servers = {
-  'angularls',
-  'bashls',
-  -- 'csharp_ls',
-  'cssls',
-  'dockerls',
-  'eslint',
-  'gopls',
-  'grammarly',
-  'graphql',
-  'html',
-  'jsonls',
-  -- 'omnisharp',
-  'prismals',
-  'pyright',
-  'rust_analyzer',
-  -- 'sumneko_lua',
-  'tailwindcss',
-  'tsserver',
+  angularls = {},
+  bashls = {},
+  -- csharp_ls = {},
+  cssls = {},
+  dockerls = {},
+  eslint = {},
+  gopls = {},
+  grammarly = {},
+  graphql = {},
+  html = {},
+  jsonls = {},
+  -- omnisharp = {},
+  prismals = {},
+  pyright = {},
+  rust_analyzer = {},
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = {'vim'}
+        }
+      }
+    }
+  },
+  tailwindcss = {},
+  tsserver = {}
 }
 
 
-for _, value in ipairs(servers) do
-  lspconfig[value].setup({
-    on_attach = lsp_on_attach,
-    capabilities = capabilities,
+local function config(_config)
+	return vim.tbl_deep_extend('force', {
     root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
-  })
+		capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		on_attach = function()
+      nnoremap('K', vim.lsp.buf.hover, { buffer = 0 })
+      nnoremap('gd', vim.lsp.buf.definition, { buffer = 0 })
+      nnoremap('gt', vim.lsp.buf.type_definition, { buffer = 0 })
+      nnoremap('gi', vim.lsp.buf.implementation, { buffer = 0 })
+      nnoremap('<leader>dj', vim.diagnostic.goto_next, { buffer = 0 })
+      nnoremap('<leader>dk', vim.diagnostic.goto_prev, { buffer = 0 })
+      nnoremap('<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
+      nnoremap('<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
+      nnoremap('<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
+		end,
+	}, _config or {})
 end
 
-lspconfig.sumneko_lua.setup({
-  on_attach = lsp_on_attach,
-  capabilities = capabilities,
-  root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'}
-      }
-    }
-  }
-})
+
+for key, value in pairs(servers) do
+  lspconfig[key].setup(config(value))
+end
