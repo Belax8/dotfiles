@@ -56,10 +56,21 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+    'klen/nvim-test',
+    after = { 'nvim-treesitter' },
+    config = function()
+      require('nvim-test').setup({
+        termOpts = {
+          direction = 'horizontal'
+        }
+      })
+    end
+  }
+
   -- Possible plugins to use
   -- use 'mhinz/vim-startify'  -- Customize the nvim start screen
   -- use 'rhysd/vim-grammarous'  -- Grammer Help
-  -- use 'klen/nvim-test'  -- Run tests via nvim
   -- use 'lspcontainers/lspcontainers.nvim'  -- attach lsp to docker container
 
 end)

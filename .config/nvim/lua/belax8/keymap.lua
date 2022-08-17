@@ -69,6 +69,17 @@ nnoremap('<leader>fb', '<cmd>Telescope buffers hidden=true<cr>')
 nnoremap('<leader>fh', '<cmd>Telescope help_tags hidden=true<cr>')
 
 
+-- nvim-test
+nnoremap('<leader>tf', '<cmd>TestFile<cr>')
+nnoremap('<leader>ts', '<cmd>TestSuite<cr>')
+nnoremap('<leader>tn', '<cmd>TestNearest<cr>')
+nnoremap('<leader>tl', '<cmd>TestLast<cr>')
+
+
+-- Git Messenger
+nnoremap('<leader>gm', '<cmd>GitMessenger<cr>')
+
+
 -- One theme
 vim.g.airline_theme='one'
 vim.cmd('colorscheme one')
@@ -104,10 +115,6 @@ autocmd('BufReadPost', {
   command = "call one#highlight('ColorColumn', 'ffffff', '262626', 'none')",
   group = OneThemeGroup
 })
-
-
--- Git Messenger
-nnoremap('<leader>gm', '<cmd>GitMessenger<cr>')
 
 
 -- Prettier
