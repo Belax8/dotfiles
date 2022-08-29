@@ -79,31 +79,20 @@ vim.cmd('set t_8b=^[[48;2;%lu;%lu;%lum')
 vim.cmd('set t_8f=^[[38;2;%lu;%lu;%lum')
 
 OneThemeGroup = augroup('OneTheme', {})
-autocmd('BufReadPost', {
-  pattern = '*',
-  command = "call one#highlight('PMenu', 'ffffff', '005174', 'none')",
-  group = OneThemeGroup
-})
-autocmd('BufReadPost', {
-  pattern = '*',
-  command = "call one#highlight('PMenuSel', 'ffffff', '005174', 'none')",
-  group = OneThemeGroup
-})
-autocmd('BufReadPost', {
-  pattern = '*',
-  command = "call one#highlight('PMenuSbar', 'ffffff', '005174', 'none')",
-  group = OneThemeGroup
-})
-autocmd('BufReadPost', {
-  pattern = '*',
-  command = "call one#highlight('PMenuThumb', 'ffffff', '005174', 'none')",
-  group = OneThemeGroup
-})
-autocmd('BufReadPost', {
-  pattern = '*',
-  command = "call one#highlight('ColorColumn', 'ffffff', '262626', 'none')",
-  group = OneThemeGroup
-})
+local themeOverrides = {
+  'PMenu',
+  'PMenuSel',
+  'PMenuSbar',
+  'PMenuThumb',
+  'ColorColumn'
+}
+for _, value in ipairs(themeOverrides) do
+  autocmd('BufReadPost', {
+    pattern = '*',
+    command = "call one#highlight('" .. value .. "', 'ffffff', '262626', 'none')",
+    group = OneThemeGroup
+  })
+end
 
 
 -- Git Messenger
