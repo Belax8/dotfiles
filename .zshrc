@@ -11,6 +11,9 @@ eval "$(starship init zsh)"
 alias la='ls -lah'
 alias chtsh="$HOME/.dotfiles/cht.sh"
 alias dotfiles='cd ~/.dotfiles'
+alias cdd='cd ../'
+alias cddd='cd ../../'
+alias cdddd='cd ../../../'
 
 # Git
 alias gs='git status'

@@ -5,6 +5,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local remap = require('belax8.remap')
 local nnoremap = remap.nnoremap
 local inoremap = remap.inoremap
+local vnoremap = remap.vnoremap
 
 local silent = { silent = true }
 
@@ -35,7 +36,15 @@ require('nvim-treesitter.configs').setup({
 
 
 -- Misc
-inoremap('jj', '<esc>')
+inoremap('jj', '<esc>') -- exit insert mode with jj
+vnoremap('J', ":m '>+1<CR>gv=gv") -- move the selected block up
+vnoremap('K', ":m '>-2<CR>gv=gv") -- move the selected block down
+
+nnoremap('<C-j>', '<cmd>cnext<CR>zz') -- jump to next in quickfix
+nnoremap('<C-k>', '<cmd>cprev<CR>zz') -- jump to prev in quickfix
+
+nnoremap('<C-u>', '<C-u>zz') -- scroll up and then center the screen
+nnoremap('<C-d>', '<C-d>zz') -- scroll down and then center the screen
 
 
 -- Harpoon

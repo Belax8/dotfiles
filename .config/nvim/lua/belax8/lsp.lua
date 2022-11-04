@@ -6,6 +6,7 @@ end
 
 local cmp = require('cmp')
 local nnoremap = require('belax8.remap').nnoremap
+local inoremap = require('belax8.remap').inoremap
 
 
 require('nvim-lsp-installer').setup({
@@ -103,6 +104,7 @@ local function config(_config)
       nnoremap('<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
       nnoremap('<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
       nnoremap('<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
+      inoremap('<C-h>', vim.lsp.buf.signature_help, { buffer = 0 })
 		end,
 	}, _config or {})
 end
