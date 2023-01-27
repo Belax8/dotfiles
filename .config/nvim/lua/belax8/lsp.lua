@@ -9,15 +9,17 @@ local nnoremap = require('belax8.remap').nnoremap
 local inoremap = require('belax8.remap').inoremap
 
 
-require('nvim-lsp-installer').setup({
-    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+require('mason').setup({
     ui = {
         icons = {
-            server_installed = '✓',
-            server_pending = '➜',
-            server_uninstalled = '✗'
+            package_installed = '✓',
+            package_pending = '➜',
+            package_uninstalled = '✗'
         }
     }
+})
+require('mason-lspconfig').setup({
+    automatic_installation = true
 })
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
@@ -67,7 +69,6 @@ local servers = {
   cssls = {},
   dockerls = {},
   eslint = {},
-  gopls = {},
   grammarly = {},
   graphql = {},
   html = {},
@@ -75,7 +76,6 @@ local servers = {
   -- omnisharp = {},
   prismals = {},
   pyright = {},
-  rust_analyzer = {},
   sumneko_lua = {
     settings = {
       Lua = {
@@ -93,7 +93,7 @@ local servers = {
 local function config(_config)
 	return vim.tbl_deep_extend('force', {
     root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
-		capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 		on_attach = function()
       nnoremap('K', vim.lsp.buf.hover, { buffer = 0 })
       nnoremap('gd', vim.lsp.buf.definition, { buffer = 0 })
