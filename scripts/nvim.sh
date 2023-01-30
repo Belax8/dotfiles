@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
 # install dependencies
-sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen --yes
+sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen ripgrep --yes
 
 
 if ! [ -d $HOME/neovim ]
