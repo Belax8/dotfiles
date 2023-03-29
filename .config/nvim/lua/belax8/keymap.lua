@@ -67,6 +67,7 @@ nnoremap('<leader>9', function() require('harpoon.ui').nav_file(9) end, silent)
 
 -- Nerd Tree
 vim.cmd('let NERDTreeShowHidden=1')
+vim.cmd('let NERDTreeWinSize=40')
 nnoremap('<C-o>', '<cmd>NERDTreeToggle %<cr>')
 
 

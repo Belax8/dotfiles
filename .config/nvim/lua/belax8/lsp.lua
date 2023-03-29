@@ -75,14 +75,23 @@ local servers = {
   -- omnisharp = {},
   prismals = {},
   pyright = {},
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
         diagnostics = {
-          globals = {'vim'}
-        }
-      }
-    }
+          globals = {'vim'},
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
   },
   tailwindcss = {},
   tsserver = {}
