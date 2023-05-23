@@ -1,123 +1,77 @@
-local status_ok, lspconfig = pcall(require, 'lspconfig')
-if not status_ok then
-  vim.notify('Unable to load lspconfig', vim.log.level.ERROR)
-  return
-end
-
-local cmp = require('cmp')
+local lsp = require('lsp-zero')
 local nnoremap = require('belax8.remap').nnoremap
 local inoremap = require('belax8.remap').inoremap
 
+lsp.preset('recommended')
 
-require('mason').setup({
-    ui = {
-        icons = {
-            package_installed = '✓',
-            package_pending = '➜',
-            package_uninstalled = '✗'
+lsp.ensure_installed({
+  'angularls',
+  'bashls',
+  'cssls',
+  'dockerls',
+  'eslint',
+  'grammarly',
+  'graphql',
+  'html',
+  'jsonls',
+  'lua_ls',
+  'prismals',
+  'pyright',
+  'tailwindcss',
+  'tsserver'
+})
+
+-- Fix Undefined global 'vim'
+lsp.configure('lua_ls', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
         }
     }
 })
-require('mason-lspconfig').setup({
-    automatic_installation = true
-})
 
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-    end,
-  },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
-  },
-  mapping = cmp.mapping.preset.insert({
+local cmp = require('cmp')
+local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' }, -- For luasnip users.
-  }, {
-    { name = 'buffer' },
-  })
 })
 
--- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-  }, {
-    { name = 'buffer' },
-  })
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings
 })
 
+lsp.set_preferences({
+    suggest_lsp_servers = false,
+    sign_icons = {
+        error = 'E',
+        warn = 'W',
+        hint = 'H',
+        info = 'I'
+    }
+})
 
--- Setup lspconfig.
-local servers = {
-  angularls = {},
-  bashls = {},
-  -- csharp_ls = {},
-  cssls = {},
-  dockerls = {},
-  eslint = {},
-  grammarly = {},
-  graphql = {},
-  html = {},
-  jsonls = {},
-  -- omnisharp = {},
-  prismals = {},
-  pyright = {},
-  lua_ls = {
-    settings = {
-      Lua = {
-        runtime = {
-          version = 'LuaJIT',
-        },
-        diagnostics = {
-          globals = {'vim'},
-        },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        telemetry = {
-          enable = false,
-        },
-      },
-    },
-  },
-  tailwindcss = {},
-  tsserver = {}
-}
+lsp.on_attach(function(client, bufnr)
+  local opts = { buffer = bufnr }
+  nnoremap('K', vim.lsp.buf.hover, opts)
+  nnoremap('gd', vim.lsp.buf.definition, opts)
+  nnoremap('gt', vim.lsp.buf.type_definition, opts)
+  nnoremap('gi', vim.lsp.buf.implementation, opts)
+  nnoremap('<leader>dj', vim.diagnostic.goto_next, opts)
+  nnoremap('<leader>dk', vim.diagnostic.goto_prev, opts)
+  nnoremap('<leader>dl', '<cmd>Telescope diagnostics<cr>', opts)
+  nnoremap('<leader>rn', vim.lsp.buf.rename, opts)
+  nnoremap('<leader>ca', vim.lsp.buf.code_action, opts)
+  inoremap('<C-h>', vim.lsp.buf.signature_help, opts)
+end)
 
+lsp.setup()
 
-local function config(_config)
-	return vim.tbl_deep_extend('force', {
-    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
-		capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-		on_attach = function()
-      nnoremap('K', vim.lsp.buf.hover, { buffer = 0 })
-      nnoremap('gd', vim.lsp.buf.definition, { buffer = 0 })
-      nnoremap('gt', vim.lsp.buf.type_definition, { buffer = 0 })
-      nnoremap('gi', vim.lsp.buf.implementation, { buffer = 0 })
-      nnoremap('<leader>dj', vim.diagnostic.goto_next, { buffer = 0 })
-      nnoremap('<leader>dk', vim.diagnostic.goto_prev, { buffer = 0 })
-      nnoremap('<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
-      nnoremap('<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
-      nnoremap('<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
-      inoremap('<C-h>', vim.lsp.buf.signature_help, { buffer = 0 })
-		end,
-	}, _config or {})
-end
+vim.diagnostic.config({
+    virtual_text = true
+})
 
-
-for key, value in pairs(servers) do
-  lspconfig[key].setup(config(value))
-end

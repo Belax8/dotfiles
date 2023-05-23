@@ -18,18 +18,13 @@ nnoremap('<leader>nh', function() require('telescope').extensions.notify.notify(
 -- Treesitter
 require('nvim-treesitter.configs').setup({
   ensure_installed = { 'bash', 'c_sharp', 'css', 'dockerfile', 'go', 'graphql', 'hjson', 'html',
-  'javascript', 'lua', 'prisma', 'python', 'rust', 'scss', 'typescript' },
-  -- ensure_installed = 'all',
+  'javascript', 'jsonc', 'lua', 'prisma', 'python', 'rust', 'scss', 'typescript' },
 
   sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
-
   auto_install = true,  -- Automatically install missing parsers when entering buffer
-
-  -- ignore_install = { 'javascript' },  -- List of parsers to ignore installing (for 'all')
 
   highlight = {
     enable = true,
-    -- disable = { 'c', 'rust' },
     additional_vim_regex_highlighting = false,
   },
 })
