@@ -28,7 +28,7 @@ Run the full setup
 
 Pull git and create/update links
 ```
-./sync-dotfiles.sh
+./sync-dotfiles
 ```
 
 
@@ -48,9 +48,7 @@ The following will need to be run manually, if you want them installed:
  * AWS
  * Bun
  * Docker
- * Go
  * Mosh
- * Rust
  * Tailscale
  * Virtualenv
 
@@ -60,7 +58,7 @@ The following will need to be run manually, if you want them installed:
 ### Nvim
 Run the following command to update packer and all the plugins:
 ```
-nvim +PackerSync
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 ```
 
 ### Tmux
@@ -68,10 +66,27 @@ After it's installed, open a tmux session and install the packages (`ctrl+b I`)
 
 ### Virtualenv
 ```
-$HOME/.local/bin/virtualenv --python=python3.8 $HOME/env/<project-name>
+virtualenv --python=python3.8 $HOME/env/<project-name>
+```
+
+### Github
+Set up SSH keys
+```
+ssh-keygen -t ed25519 -C "<github-email>"
 ```
 
 ### AWS EC2
+#### Installation
+EC2 instances don't have a password by default, so give your user a new one
+```
+sudo passwd <user_name>
+```
+Customize the hostname
+```
+sudo hostnamectl set-hostname <hostname>
+```
+
+#### IP Configuration
 This script will update the EC2 instance's IP address in Route 53
 ```
 cp .update_ip_address.sh $HOME

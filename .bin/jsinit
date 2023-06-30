@@ -1,0 +1,50 @@
+#!/usr/bin/sh
+
+# get path as input
+PROJECT_DIR=$(pwd)/$1
+
+# create that folder
+mkdir $PROJECT_DIR
+cd $PROJECT_DIR
+
+# configure git
+git init
+
+# configure npm
+echo "{\"name\": \"$FOLDER_NAME\",\"scripts\": {\"format\": \"prettier --write ./\",\"format:check\": \"prettier --check ./\",\"test\": \"jest\"}}" >> $PROJECT_DIR/package.json
+
+# load dependencies
+npm install --save-dev jest
+npm install --save-dev prettier
+npm install --save-dev webpack
+
+# add configs
+echo '{"printWidth": 100,"singleQuote": true,"quoteProps": "as-needed","trailingComma": "none","arrowParens": "avoid"}' >> $PROJECT_DIR/.prettierrc.json
+echo '.git\nnode_modules' >> $PROJECT_DIR/.gitignore
+
+# make src/index.ts
+mkdir $PROJECT_DIR/src
+INDEX_FILE=$PROJECT_DIR/src/index.js
+touch $INDEX_FILE
+echo '' >> $INDEX_FILE
+echo 'function main() {' >> $INDEX_FILE
+echo '  return 8;' >> $INDEX_FILE
+echo '}' >> $INDEX_FILE
+echo '' >> $INDEX_FILE
+echo 'module.exports = { main };' >> $INDEX_FILE
+
+# make test/index.text.ts
+mkdir $PROJECT_DIR/test
+TEST_FILE=$PROJECT_DIR/test/index.test.js
+touch $TEST_FILE
+echo 'const { main } = require("../src/index");' >> $TEST_FILE
+echo '' >> $TEST_FILE
+echo 'describe("main", () => {' >> $TEST_FILE
+echo '  it("setup works", () => {' >> $TEST_FILE
+echo '    let result = main();' >> $TEST_FILE
+echo '    expect(result).toEqual(8);' >> $TEST_FILE
+echo '  });' >> $TEST_FILE
+echo '});' >> $TEST_FILE
+
+# clean up
+npm run format

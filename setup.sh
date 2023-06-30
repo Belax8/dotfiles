@@ -3,7 +3,7 @@
 ./scripts/stow.sh
 
 # Sync Dotfiles
-./.bin/sync-dotfiles.sh
+./.bin/sync-dotfiles
 
 # Install everything that we need
 FILES='node.sh,nodeenv.sh,nvim.sh,starship.sh,tmux.sh,zsh.sh'

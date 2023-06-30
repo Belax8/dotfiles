@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x' }
 
   -- Git Diff in gutter
-  use 'airblade/vim-gitgutter'
+  use {'airblade/vim-gitgutter', branch = 'main'}
 
   -- Notifications
   use 'rcarriga/nvim-notify'
