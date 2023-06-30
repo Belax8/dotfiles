@@ -23,6 +23,21 @@ return require('packer').startup(function(use)
 
   use 'preservim/nerdtree'
 
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+      }
+  }
+  use {
+    'https://codeberg.org/esensar/nvim-dev-container',
+    requires = { 'nvim-treesitter/nvim-treesitter' }
+  }
+  use 'miversen33/netman.nvim'
+
   -- One Theme
   use 'rakr/vim-one'
 
@@ -38,6 +53,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use { 'nvim-treesitter/nvim-treesitter-context' }
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x' }
 
   -- Git Diff in gutter

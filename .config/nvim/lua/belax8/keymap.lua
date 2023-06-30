@@ -33,6 +33,8 @@ require('nvim-treesitter.configs').setup({
     additional_vim_regex_highlighting = false,
   },
 })
+require('treesitter-context').setup({enable = false})
+nnoremap('<leader>ct', '<cmd>TSContextToggle<cr>')
 
 
 -- Misc
@@ -65,10 +67,35 @@ nnoremap('<leader>8', function() require('harpoon.ui').nav_file(8) end, silent)
 nnoremap('<leader>9', function() require('harpoon.ui').nav_file(9) end, silent)
 
 
--- Nerd Tree
-vim.cmd('let NERDTreeShowHidden=1')
-vim.cmd('let NERDTreeWinSize=40')
-nnoremap('<C-o>', '<cmd>NERDTreeToggle %<cr>')
+-- NeoTree
+vim.g.netman_log_level = 1
+require("devcontainer").setup({})
+require('nvim-web-devicons').setup({})
+require("neo-tree").setup({
+  sources = {
+      "buffers",
+      "filesystem",
+      "netman.ui.neo-tree",
+  },
+  source_selector = {
+    sources = {
+      winbar = true,
+      statusline = true,
+      { source = "remote" }
+    },
+  },
+  filesystem = {
+    filtered_items = {
+      hide_dotfiles = false,
+      hide_gitignored = false,
+      never_show = {
+        ".DS_Store",
+      },
+    },
+  }
+})
+nnoremap('<C-o>', '<cmd>Neotree toggle reveal<cr>')
+nnoremap('<C-nr>', '<cmd>Neotree remote<cr>')
 
 
 -- Telescope
