@@ -21,15 +21,19 @@ vim.opt.smartindent = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
--- Coc Settings
-vim.opt.hidden = true
+-- Backups
+vim.opt.swapfile = false
 vim.opt.backup = false
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
+vim.opt.undofile = true
 vim.opt.writebackup = false
+
+-- Misc
+vim.opt.updatetime = 50
+vim.opt.hidden = true
 vim.opt.cmdheight = 2
 vim.opt.updatetime = 300
 vim.opt.shortmess:append('c')
-
--- Misc
 vim.opt.expandtab = true
 vim.opt.list = true
 vim.opt.listchars = {
@@ -38,5 +42,4 @@ vim.opt.listchars = {
   nbsp = '·'
 }
 vim.opt.linebreak = true
-vim.opt.swapfile = false
 vim.opt.mouse = 'a'

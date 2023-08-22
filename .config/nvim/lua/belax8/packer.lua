@@ -4,24 +4,32 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- LSP
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    requires = {
+      {'neovim/nvim-lspconfig'},             -- Required
+      {                                      -- Optional
+        'williamboman/mason.nvim',
+        run = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-  -- Completion
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip'
-  -- use 'hrsh7th/cmp-cmdline'
-
-  use 'preservim/nerdtree'
+      {'hrsh7th/nvim-cmp'},     -- Required
+      {'hrsh7th/cmp-nvim-lsp'}, -- Required
+      {'L3MON4D3/LuaSnip'},     -- Required
+      -- others
+      {'hrsh7th/cmp-path'},
+      {'hrsh7th/cmp-buffer'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lua'},
+      {'rafamadriz/friendly-snippets'},
+    }
+  }
 
   use {
     "nvim-neo-tree/neo-tree.nvim",
@@ -38,34 +46,40 @@ return require('packer').startup(function(use)
   }
   use 'miversen33/netman.nvim'
 
-  -- One Theme
   use 'rakr/vim-one'
 
-  -- Prettier
   use 'sbdchd/neoformat'
 
-  -- Harpoon
-  use 'nvim-lua/plenary.nvim' -- Needed for Harpoon & Telescope
-  use 'ThePrimeagen/harpoon'
+  use {
+    'ThePrimeagen/harpoon',
+    requires = {
+      {'nvim-lua/plenary.nvim'}
+    }
+  }
 
-  -- Telescope
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  -- use { 'nvim-treesitter/playground' }
   use { 'nvim-treesitter/nvim-treesitter-context' }
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x' }
+  use {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = {
+      {'nvim-lua/plenary.nvim'}
+    }
+  }
 
-  -- Git Diff in gutter
+  use { 'mbbill/undotree' }
+  use { 'tpope/vim-fugitive' }
+
   use {'airblade/vim-gitgutter', branch = 'main'}
 
-  -- Notifications
   use 'rcarriga/nvim-notify'
 
-  -- Check Git blame on a line
   use 'rhysd/git-messenger.vim'
 
-  -- Easy Comments
   use {
     'numToStr/Comment.nvim',
     config = function()

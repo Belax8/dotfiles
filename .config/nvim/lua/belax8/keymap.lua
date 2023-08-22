@@ -8,7 +8,7 @@ local inoremap = remap.inoremap
 local vnoremap = remap.vnoremap
 
 local silent = { silent = true }
-
+local dark_theme = true
 
 -- Notify
 -- vim.notify = require('belax8.notify').notify
@@ -18,18 +18,13 @@ nnoremap('<leader>nh', function() require('telescope').extensions.notify.notify(
 -- Treesitter
 require('nvim-treesitter.configs').setup({
   ensure_installed = { 'bash', 'c_sharp', 'css', 'dockerfile', 'go', 'graphql', 'hjson', 'html',
-  'javascript', 'lua', 'prisma', 'python', 'rust', 'scss', 'typescript' },
-  -- ensure_installed = 'all',
+  'javascript', 'jsonc', 'lua', 'prisma', 'python', 'rust', 'scss', 'typescript' },
 
   sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
-
   auto_install = true,  -- Automatically install missing parsers when entering buffer
-
-  -- ignore_install = { 'javascript' },  -- List of parsers to ignore installing (for 'all')
 
   highlight = {
     enable = true,
-    -- disable = { 'c', 'rust' },
     additional_vim_regex_highlighting = false,
   },
 })
@@ -65,6 +60,7 @@ nnoremap('<leader>6', function() require('harpoon.ui').nav_file(6) end, silent)
 nnoremap('<leader>7', function() require('harpoon.ui').nav_file(7) end, silent)
 nnoremap('<leader>8', function() require('harpoon.ui').nav_file(8) end, silent)
 nnoremap('<leader>9', function() require('harpoon.ui').nav_file(9) end, silent)
+nnoremap('<leader>0', function() require('harpoon.ui').nav_file(10) end, silent)
 
 
 -- NeoTree
@@ -100,8 +96,8 @@ nnoremap('<C-nr>', '<cmd>Neotree remote<cr>')
 
 -- Telescope
 nnoremap('<leader>ff', '<cmd>Telescope find_files hidden=true<cr>')
-nnoremap('<leader>df', '<cmd>Telescope find_files hidden=true cwd=~/.dotfiles<cr>')
 nnoremap('<leader>fg', '<cmd>Telescope live_grep hidden=true<cr>')
+nnoremap('<leader>fw', '<cmd>Telescope grep_string hidden=true<cr>')
 nnoremap('<leader>fb', '<cmd>Telescope buffers hidden=true<cr>')
 nnoremap('<leader>fh', '<cmd>Telescope help_tags hidden=true<cr>')
 
@@ -120,7 +116,7 @@ nnoremap('<leader>gm', '<cmd>GitMessenger<cr>')
 -- One theme
 vim.g.airline_theme='one'
 vim.cmd('colorscheme one')
-vim.opt.background = 'dark'
+vim.opt.background = dark_theme and 'dark' or 'light'
 vim.g.one_allow_italics = 1
 -- for themes inside of tmux
 vim.cmd('set t_8b=^[[48;2;%lu;%lu;%lum')
@@ -135,9 +131,11 @@ local themeOverrides = {
   'ColorColumn'
 }
 for _, value in ipairs(themeOverrides) do
+  local fg = dark_theme and 'ffffff' or '262626'
+  local bg = dark_theme and '262626' or 'ffffff'
   autocmd('BufReadPost', {
     pattern = '*',
-    command = "call one#highlight('" .. value .. "', 'ffffff', '262626', 'none')",
+    command = "call one#highlight('" .. value .. "', '" .. fg .. "', '" .. bg .. "', 'none')",
     group = OneThemeGroup
   })
 end
