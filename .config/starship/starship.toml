@@ -25,7 +25,7 @@ symbol = "🌱"
 
 [hostname]
 ssh_only = false
-format = "[$hostname](bold white)[: ](bold  white)"
+format = "[$hostname](bold gray)[: ](bold  white)"
 style = "bold blue"
 
 [nodejs]

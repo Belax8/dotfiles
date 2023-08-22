@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+for D in $(find $HOME/review -mindepth 1 -maxdepth 1 -type d) ; do
+    cd $D;
+    git reset --hard;
+    git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@');
+    # git pull origin $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@');
+    git pull;
+done
