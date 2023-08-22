@@ -1,7 +1,10 @@
-#!/usr/bin/sh
+#!/usr/bin/env bash
 
 # get path as input
 PROJECT_DIR=$(pwd)/$1
+FOLDER_NAME=$1
+NODE_V=$(node -v)
+NPM_V=$(npm -v)
 
 # create that folder
 mkdir $PROJECT_DIR
@@ -11,7 +14,7 @@ cd $PROJECT_DIR
 git init
 
 # configure npm
-echo "{\"name\": \"$FOLDER_NAME\",\"scripts\": {\"format\": \"prettier --write ./\",\"format:check\": \"prettier --check ./\",\"test\": \"jest\"}}" >> $PROJECT_DIR/package.json
+echo "{\"name\": \"$FOLDER_NAME\",\"scripts\": {\"format\": \"prettier --write ./\",\"format:check\": \"prettier --check ./\",\"test\": \"jest\"}, \"engines\": {\"node\": \"^${NODE_V/v/}\", \"npm\": \"^$NPM_V\"}}" >> $PROJECT_DIR/package.json
 
 # load dependencies
 npm install --save-dev jest
