@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env bash
 
 # tailscale
 if ! command -v tailscale > /dev/null
