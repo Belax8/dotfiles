@@ -40,11 +40,11 @@ return require('packer').startup(function(use)
         "MunifTanjim/nui.nvim",
       }
   }
-  use {
-    'https://codeberg.org/esensar/nvim-dev-container',
-    requires = { 'nvim-treesitter/nvim-treesitter' }
-  }
-  use 'miversen33/netman.nvim'
+  -- use {
+  --   'https://codeberg.org/esensar/nvim-dev-container',
+  --   requires = { 'nvim-treesitter/nvim-treesitter' }
+  -- }
+  -- use 'miversen33/netman.nvim'
 
   use 'rakr/vim-one'
 

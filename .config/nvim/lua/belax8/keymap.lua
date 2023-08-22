@@ -65,13 +65,10 @@ nnoremap('<leader>0', function() require('harpoon.ui').nav_file(10) end, silent)
 
 -- NeoTree
 vim.g.netman_log_level = 1
-require("devcontainer").setup({})
-require('nvim-web-devicons').setup({})
 require("neo-tree").setup({
   sources = {
       "buffers",
       "filesystem",
-      "netman.ui.neo-tree",
   },
   source_selector = {
     sources = {
