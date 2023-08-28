@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+PROJECT_DIR=$(pwd)/$1
+
+jsinit $1
+
+cd $PROJECT_DIR
+
+npm i --save-dev @types/jest
+npm i --save-dev ts-jest
+npm i --save-dev ts-node
+npm i --save-dev typescript
+
+npx json -I -f package.json -e "this.scripts.build=\"tsc\""
+
+echo 'dist' >> $PROJECT_DIR/.gitignore
+
+rm $PROJECT_DIR/src/index.js
+INDEX_FILE=$PROJECT_DIR/src/index.ts
+touch $INDEX_FILE
+echo '' >> $INDEX_FILE
+echo 'export function main(): number {' >> $INDEX_FILE
+echo '  return 8;' >> $INDEX_FILE
+echo '}' >> $INDEX_FILE
+
+rm $PROJECT_DIR/test/index.test.js
+TEST_FILE=$PROJECT_DIR/test/index.test.ts
+touch $TEST_FILE
+echo 'import { main } from "../src/index";' >> $TEST_FILE
+echo '' >> $TEST_FILE
+echo 'describe("main", () => {' >> $TEST_FILE
+echo '  it("setup works", () => {' >> $TEST_FILE
+echo '    let result = main();' >> $TEST_FILE
+echo '    expect(result).toEqual(8);' >> $TEST_FILE
+echo '  });' >> $TEST_FILE
+echo '});' >> $TEST_FILE
+
+JEST_FILE=$PROJECT_DIR/jest.config.ts
+touch $JEST_FILE
+echo 'import type {Config} from "@jest/types";' >> $JEST_FILE
+echo '// Sync object' >> $JEST_FILE
+echo 'const config: Config.InitialOptions = {' >> $JEST_FILE
+echo '  verbose: true,' >> $JEST_FILE
+echo '  transform: {' >> $JEST_FILE
+echo '  "^.+\\.tsx?$": "ts-jest",' >> $JEST_FILE
+echo '  },' >> $JEST_FILE
+echo '};' >> $JEST_FILE
+echo 'export default config;' >> $JEST_FILE
+
+TSCONFIG_FILE=$PROJECT_DIR/tsconfig.json
+touch $TSCONFIG_FILE
+echo '{' >> $TSCONFIG_FILE
+echo '  "compilerOptions": {' >> $TSCONFIG_FILE
+echo '    "target": "es2016",' >> $TSCONFIG_FILE
+echo '    "module": "commonjs",' >> $TSCONFIG_FILE
+echo '    "esModuleInterop": true,' >> $TSCONFIG_FILE
+echo '    "forceConsistentCasingInFileNames": true,' >> $TSCONFIG_FILE
+echo '    "strict": true,' >> $TSCONFIG_FILE
+echo '    "skipLibCheck": true,' >> $TSCONFIG_FILE
+echo '    "outDir": "dist"' >> $TSCONFIG_FILE
+echo '  },' >> $TSCONFIG_FILE
+echo '  "include": ["./src/**/*"]' >> $TSCONFIG_FILE
+echo '}' >> $TSCONFIG_FILE
+
+npm run format

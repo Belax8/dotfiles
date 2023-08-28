@@ -14,16 +14,18 @@ cd $PROJECT_DIR
 git init
 
 # configure npm
-echo "{\"name\": \"$FOLDER_NAME\",\"scripts\": {\"format\": \"prettier --write ./\",\"format:check\": \"prettier --check ./\",\"test\": \"jest\"}, \"engines\": {\"node\": \"^${NODE_V/v/}\", \"npm\": \"^$NPM_V\"}}" >> $PROJECT_DIR/package.json
+echo "{\"name\": \"$FOLDER_NAME\",\"scripts\": {\"format\": \"prettier --write ./\",\"format:check\": \"prettier --check ./\",\"test\": \"jest\",\"test:watch\": \"jest --watch\"}, \"engines\": {\"node\": \"^${NODE_V/v/}\", \"npm\": \"^$NPM_V\"}}" >> $PROJECT_DIR/package.json
 
 # load dependencies
 npm install --save-dev jest
 npm install --save-dev prettier
 npm install --save-dev webpack
+npm install --save-dev json
 
 # add configs
 echo '{"printWidth": 100,"singleQuote": true,"quoteProps": "as-needed","trailingComma": "none","arrowParens": "avoid"}' >> $PROJECT_DIR/.prettierrc.json
-echo '.git\nnode_modules' >> $PROJECT_DIR/.gitignore
+echo '.git' >> $PROJECT_DIR/.gitignore
+echo 'node_modules' >> $PROJECT_DIR/.gitignore
 
 # make src/index.ts
 mkdir $PROJECT_DIR/src
