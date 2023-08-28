@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-languages=`echo "nodejs javascript tmux typescript zsh python bash css html" | tr ' ' '\n'`            
+
+# Cheat Sheet script
+
+languages=`echo "nodejs javascript tmux typescript zsh python bash css html" | tr ' ' '\n'`
 core_utils=`echo "find man tldr sed awk tr cp ls grep xargs rg ps mv kill lsof less head tail tar cp rm rename jq cat ssh cargo git git-worktree git-status git-commit git-rebase docker docker-compose stow chmod chown make" | tr ' ' '\n'`
 
 selected=`printf "$languages\n$core_utils" | fzf`

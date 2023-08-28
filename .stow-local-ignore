@@ -2,7 +2,6 @@
 .gitignore
 \.bin
 README.md
-cht.sh
 setup.sh
 scripts
 .update_ip_address.sh

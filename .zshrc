@@ -2,6 +2,9 @@
 # Neovim
 alias vim='nvim'
 export EDITOR=nvim
+export VIM_THEME=dark
+alias dark="VIM_THEME=dark"
+alias light="VIM_THEME=light"
 
 # Starship
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
@@ -9,7 +12,6 @@ eval "$(starship init zsh)"
 
 # Misc
 alias la='ls -lah'
-alias chtsh="$HOME/.dotfiles/cht.sh"
 alias dotfiles='cd ~/.dotfiles'
 alias cdd='cd ../'
 alias cddd='cd ../../'

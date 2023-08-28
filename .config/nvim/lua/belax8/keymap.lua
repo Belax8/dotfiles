@@ -8,7 +8,6 @@ local inoremap = remap.inoremap
 local vnoremap = remap.vnoremap
 
 local silent = { silent = true }
-local dark_theme = true
 
 -- Notify
 -- vim.notify = require('belax8.notify').notify
@@ -111,6 +110,8 @@ nnoremap('<leader>gm', '<cmd>GitMessenger<cr>')
 
 
 -- One theme
+local vim_theme = os.getenv("VIM_THEME")
+local dark_theme = (vim_theme == 'dark' or vim_theme == '') and true or false
 vim.g.airline_theme='one'
 vim.cmd('colorscheme one')
 vim.opt.background = dark_theme and 'dark' or 'light'
