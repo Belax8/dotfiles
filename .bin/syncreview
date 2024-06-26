@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 for D in $(find $HOME/review -mindepth 1 -maxdepth 1 -type d) ; do
+    echo ""
+    echo $D
     cd $D;
     git reset --hard;
     git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@');

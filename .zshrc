@@ -1,8 +1,6 @@
 
 # Neovim
-alias vim='nvim'
-export EDITOR=nvim
-export VIM_THEME=dark
+export VIM_THEME=light
 alias dark="VIM_THEME=dark"
 alias light="VIM_THEME=light"
 
