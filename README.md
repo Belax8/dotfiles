@@ -40,6 +40,7 @@ The following will be installed with the setup script:
  * Starship
  * Stow
  * Tmux
+ * Vim
  * Zsh
 
 

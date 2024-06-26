@@ -1,8 +1,8 @@
 
 # Neovim
-export VIM_THEME=light
-alias dark="VIM_THEME=dark"
-alias light="VIM_THEME=light"
+export NVIM_THEME=light
+alias dark="NVIM_THEME=dark"
+alias light="NVIM_THEME=light"
 
 # Starship
 export STARSHIP_CONFIG=~/.config/starship/starship.toml

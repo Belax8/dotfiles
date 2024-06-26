@@ -110,7 +110,7 @@ nnoremap('<leader>gm', '<cmd>GitMessenger<cr>')
 
 
 -- One theme
-local vim_theme = os.getenv("VIM_THEME")
+local vim_theme = os.getenv("NVIM_THEME")
 local dark_theme = (vim_theme == 'dark' or vim_theme == '') and true or false
 vim.g.airline_theme='one'
 vim.cmd('colorscheme one')

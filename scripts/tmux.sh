@@ -2,7 +2,7 @@
 
 if ! command -v tmux > /dev/null
 then
-  sudo apt-get install tmux --yes
+  sudo apt install tmux -y
 else
   echo 'tmux already installed'
 fi
